@@ -1,5 +1,5 @@
 # Bizzarely-Balancing-Bike (a spooky bike that could stalk you)
-Embedded System Final Report
+Embedded System Final Report    By 楊學翰 B08901054 陳韋旭 B08901181
 ---
 
 ## Introduction
@@ -31,6 +31,17 @@ We make use of 3D printers and laser cutter to make various kind of mounts
 ### How To Track A Person
 - Version 1 – Track the person in red
    1. Take a color image and convert RGB into HSV
+      ```
+      boundaries = {
+        "R": ([170, 80, 10], [180, 255, 255]), ... }
+      bd = boundaries[color]
+      img = msg_retriever.func_data['colorStream']['data']
+      HSV_img = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
+
+      mask = cv2.inRange(HSV_img, bd[0], bd[1])
+      kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3,3))
+      mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel, iterations=2)
+      ```
    2. Create a mask of the red areas; calculate the average x coordinate of the mask
    3. The Horizontal Field of View(HFOV) is ≈69°; we can calculate ∆θ = arctan(∆x / (320 * cot(HFOV / 2)))
    4. Adjust the handlebar servo motor angle accordingly
@@ -78,6 +89,14 @@ We make use of 3D printers and laser cutter to make various kind of mounts
    - Need two subscribers on two seperate threads
 - Collision avoidance
    - Create a separate thread to constantly monitor obstacles ahead of the bike
+   ```
+   col = threading.Thread(target = collision_avoidance)
+   ...
+   col.start()
+   stalk()
+   ...
+   col.join()
+   ```
 
 #### PWM Control
 - Use 50 Hz PWM to control Servo (duty cycle: 10%~20%)
