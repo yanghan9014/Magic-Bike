@@ -61,7 +61,14 @@ Analog DC signal (0.8V ~ 3.6V DC) is required to control the throttle, which is 
 
 ## Result & demo
 Demo video link: https://www.youtube.com/watch?v=ACSJ1eG-BSU
+
 ## Future Prospects
+This project is an unfortunate simplification of an overly ambitious idea.
+After this, we plan to...
+1. Detect and avoid (or follow) certain objects (cars, people, animals...) on the road with YOLO v5.
+2. Detect road edges (https://github.com/amusi/awesome-lane-detection), and apply projective transform to get a bird's-eye-view. Auto-correct bike direction if not parellel to the road.
+3. Install GPS module and connect with path-finding API; complete fully automated navigation.
+
 
 ## Reference
 Xuan bike github: https://github.com/peng-zhihui/XUAN
