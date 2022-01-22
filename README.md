@@ -65,6 +65,10 @@ We make use of 3D printers and laser cutter to make various kind of mounts
 ### Control System
 <img src = https://i.imgur.com/3ZdfIew.png width = 80%>
 
+### ROS2 (on Jetson Nano)
+Handle software communication between nodes
+
+
 ### Implemented techniques (from Embedded System course)
 - Docker
 - WiFi AP
@@ -74,8 +78,8 @@ We make use of 3D printers and laser cutter to make various kind of mounts
 - Streaming with GStreamer
 
 #### Docker
-- Solve dependency issues
-- Used docker image from docker hub (https://hub.docker.com/r/osrf/ros2/)
+- Solve dependency and installation issues
+- Used ROS2 docker image from docker hub (https://hub.docker.com/r/osrf/ros2/)
 - Enable auto-restart of docker container
 
 #### WiFi AP
@@ -138,20 +142,24 @@ Analog DC signal (0.8V ~ 3.6V DC) is required to control the throttle, which is 
    - Solution:
       - Use PWM & RC low-pass filter to simulate analog voltage signal
 2. RealSense camera delay
+Cmera input always comes with some delay
    - Solution: 
       - Slow down bike speed
       - Add delay between each "turn left" or "turn right" command
+3. Jetson Nano's IP changes everytime it connected to a different WiFi
+   - Solution:
+      - Make Jetson Nano itself a WiFi AP 
 
 ## Result & demo
 Demo video link: https://www.youtube.com/watch?v=ACSJ1eG-BSU
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=ACSJ1eG-BSU
 " target="_blank"><img src="http://img.youtube.com/vi/ACSJ1eG-BSU/0.jpg" 
-alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+alt="IMAGE ALT TEXT HERE" width="1200" height="900" border="10" /></a>
 
 ## Future Prospects
 This project is an unfortunate simplification of an overly ambitious idea.
-Having figured out the depth camera, we established a foundation that we can easily build upon.
+Having figured out how to utilize the depth camera, we established a foundation that we can easily build upon.
 After this, we plan to...
 1. Detect and avoid (or follow) certain objects (cars, people, animals...) on the road with YOLO v5.
 2. Detect road edges (https://github.com/amusi/awesome-lane-detection), and apply projective transform to get a bird's-eye-view. Auto-correct bike direction if not parellel to the road.
@@ -162,4 +170,5 @@ After this, we plan to...
 ## Reference
 - Xuan bike github: https://github.com/peng-zhihui/XUAN
 - Xuan bike YouTube: https://www.youtube.com/watch?v=kCL2d7wZjU8&t=507s&ab_channel=%E7%A8%9A%E6%99%96%E5%90%9B
+- ROS2 tutorial: https://docs.ros.org/en/foxy/Tutorials.html
 - Road edge detection: https://github.com/amusi/awesome-lane-detection
