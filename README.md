@@ -10,7 +10,7 @@ We originally intend to build a self-balancing & self-navigating bike just like 
 - STM32L4
 - Jetson Nano
 - RealSense depth camera D435
-- 45kg-cm PWM controlled servo motor * 2
+- 45kg-cm PWM controlled servo motor (Fashion Star HP8-A45) * 2
 - Electric bike motor
 
 ### Hardware installation
@@ -39,6 +39,12 @@ We make use of 3D printers and laser cutter to make various kind of mounts
 - Calculate the total area in which the distance < 1000m
 - If the area reaches a certain threshold (5% of the full image), hold brake and cut off back wheel motor power
 (We don't simply measure the closest distance to avoid false alarms)
+
+### Power System
+![](https://i.imgur.com/0Y6CQgn.png)
+
+### Control System
+![](https://i.imgur.com/3ZdfIew.png)
 
 ### Implemented techniques (from Embedded System course)
 - Docker
