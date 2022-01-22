@@ -67,7 +67,7 @@ We make use of 3D printers and laser cutter to make various kind of mounts
 
 ### ROS2 (on Jetson Nano)
 Handle software communication between nodes
-
+<img src = https://github.com/yanghan9014/Bizzarely-Balancing-Bike/blob/main/ROS2%20architecture.png width = 80%>
 
 ### Implemented techniques (from Embedded System course)
 - Docker
