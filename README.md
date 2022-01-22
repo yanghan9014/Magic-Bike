@@ -62,6 +62,11 @@ We make use of 3D printers and laser cutter to make various kind of mounts
 - Used docker image from docker hub (https://hub.docker.com/r/osrf/ros2/)
 - Enable auto-restart of docker container
 
+#### WiFi AP
+- Internet IP changes when Jetson Nano connects to a different network
+- Solution: Make Jetson Nano a WiFi A
+
+
 
 
 ## Problems & solutions
@@ -91,4 +96,5 @@ After this, we plan to...
 
 ## Reference
 Xuan bike github: https://github.com/peng-zhihui/XUAN
+
 Xuan bike YouTube: https://www.youtube.com/watch?v=kCL2d7wZjU8&t=507s&ab_channel=%E7%A8%9A%E6%99%96%E5%90%9B
