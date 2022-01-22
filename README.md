@@ -2,8 +2,10 @@
 Embedded System Final Report
 ---
 
-## Motivation & ideas
+## Introduction
 We originally intend to build a self-balancing & self-navigating bike just like the XUAN-Bike (https://github.com/peng-zhihui/XUAN), but found self-balancing far too difficult. We then shift our focus solely onto self-navigating.
+
+In this project we established the pipeline of RGBD image processing and Jetson Nano-STM32 communication. Although we couldn't complete self-navigation in time, we demonstrated our work by making our bike follow a person (wearing red, for now).
 
 ## Method
 ### Development boards & motors
@@ -38,6 +40,7 @@ We make use of 3D printers and laser cutter to make various kind of mounts
 - Crop out bottom ⅓ of the image (the floor is too close)
 - Calculate the total area in which the distance < 1000m
 - If the area reaches a certain threshold (5% of the full image), hold brake and cut off back wheel motor power
+
 (We don't simply measure the closest distance to avoid false alarms)
 
 ### Power System
@@ -54,6 +57,12 @@ We make use of 3D printers and laser cutter to make various kind of mounts
 - Serial communication
 - Streaming with GStreamer
 
+#### Docker
+- Solve dependency issues
+- Used docker image from docker hub (https://hub.docker.com/r/osrf/ros2/)
+- Enable auto-restart of docker container
+
+
 
 ## Problems & solutions
 1. No analog DC signal on STM32 board
@@ -67,6 +76,10 @@ Analog DC signal (0.8V ~ 3.6V DC) is required to control the throttle, which is 
 
 ## Result & demo
 Demo video link: https://www.youtube.com/watch?v=ACSJ1eG-BSU
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=ACSJ1eG-BSU
+" target="_blank"><img src="http://img.youtube.com/vi/ACSJ1eG-BSU/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
 ## Future Prospects
 This project is an unfortunate simplification of an overly ambitious idea.
