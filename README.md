@@ -1,8 +1,8 @@
 # Bizzarely-Balancing-Bike (a spooky bike that could stalk you)
-Embedded System Final Report    By 楊學翰 B08901054 陳韋旭 B08901181
+Embedded System Final Report   -- By 楊學翰 B08901054 陳韋旭 B08901181
 ---
 
-## Introduction
+## Introduction & Motivation
 We originally intend to build a self-balancing & self-navigating bike just like the XUAN-Bike (https://github.com/peng-zhihui/XUAN), but found self-balancing far too difficult. We then shift our focus solely onto self-navigating.
 
 In this project we established the pipeline of RGBD image processing and Jetson Nano-STM32 communication. Although we couldn't complete self-navigation in time, we demonstrated our work by making our bike follow a person (wearing red, for now).
@@ -68,7 +68,7 @@ We make use of 3D printers and laser cutter to make various kind of mounts
 ### Implemented techniques (from Embedded System course)
 - Docker
 - WiFi AP
-- Multi-threading
+- Multithreading
 - PWM control
 - Serial communication
 - Streaming with GStreamer
@@ -87,6 +87,11 @@ We make use of 3D printers and laser cutter to make various kind of mounts
 - Camera
    - Camera input is divided into color and depth
    - Need two subscribers on two seperate threads
+   ```
+   executor.add_node(msg_retriever)
+   executor_thread = threading.Thread(target=msg_retriever.wait_for_messages, daemon=True, args = (themes, executor))
+   executor_thread.start()
+   ```
 - Collision avoidance
    - Create a separate thread to constantly monitor obstacles ahead of the bike
    ```
@@ -109,6 +114,15 @@ We make use of 3D printers and laser cutter to make various kind of mounts
 - Divide the tasks
    - STM32 is a real-time OS. Handles PWM timer to control servo motor
    - Jetson Nano has built-in GPU. Can accelerate image processing speed and provide streaming
+   ```
+   self.serial_port = serial.Serial(
+      port="/dev/ttyACM0",
+      baudrate=9600,
+      timeout=0.5
+   )
+   ...
+   self.serial_port.write(sendMessage.encode('ascii'))
+   ```
 
 #### GStreamer (not finished yet)
 - We've successfully streamed with Pi Camera
