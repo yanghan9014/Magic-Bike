@@ -32,7 +32,7 @@ We make use of 3D printers and laser cutter to make various kind of mounts
 - Version 1 – Track the person in red
    1. Take a color image and convert RGB into HSV
    2. Create a mask of the red areas; calculate the average x coordinate of the mask
-   3. The Horizontal Field of View is ≈69°; we can calculate ∆θ = arctan(∆x / (320 * cot(HFOV / 2)))
+   3. The Horizontal Field of View(HFOV) is ≈69°; we can calculate ∆θ = arctan(∆x / (320 * cot(HFOV / 2)))
    4. Adjust the handlebar servo motor angle accordingly
 
 - Version 2 - Track the closest person to the bike (not complete yet)
@@ -69,9 +69,34 @@ We make use of 3D printers and laser cutter to make various kind of mounts
 
 #### WiFi AP
 - Internet IP changes when Jetson Nano connects to a different network
-- Solution: Make Jetson Nano a WiFi A
+- Solution: Make Jetson Nano a WiFi AP
 
+#### Multithreading
+- Collision avoidance & camera should be constantly on
+- Camera
+   - Camera input is divided into color and depth
+   - Need two subscribers on two seperate threads
+- Collision avoidance
+   - Create a separate thread to constantly monitor obstacles ahead of the bike
 
+#### PWM Control
+- Use 50 Hz PWM to control Servo (duty cycle: 10%~20%)
+- Use 50 kHZ PWM & low-pass filter to simulate DAC
+   - Throttle signal: 0.8V ~ 3.6V DC
+   - STM32 can only output digital signals or PWM
+
+#### Serial Communication
+- Between Jetson Nano & STM32
+- Divide the tasks
+   - STM32 is a real-time OS. Handles PWM timer to control servo motor
+   - Jetson Nano has built-in GPU. Can accelerate image processing speed and provide streaming
+
+#### GStreamer (not finished yet)
+- We've successfully streamed with Pi Camera
+
+```gst-launch-1.0   nvarguscamerasrc !       "video/x-raw(memory:NVMM), width=1920, height=1080, framerate=30/1" !   nvvidconv flip-method=2 !    omxh264enc control-rate=2 bitrate=4000000 !      "video/x-h264, stream-format=byte-stream" !   rtph264pay mtu=1400 !    udpsink host=192.168.10.110 port=5000 sync=false async=false```
+- But failed with RealSense
+   - Realsense src is not fully supported on GStreamer yet
 
 
 ## Problems & solutions
@@ -101,5 +126,5 @@ After this, we plan to...
 
 ## Reference
 Xuan bike github: https://github.com/peng-zhihui/XUAN
-
 Xuan bike YouTube: https://www.youtube.com/watch?v=kCL2d7wZjU8&t=507s&ab_channel=%E7%A8%9A%E6%99%96%E5%90%9B
+Road edge detection: https://github.com/amusi/awesome-lane-detection
