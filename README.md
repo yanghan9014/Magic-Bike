@@ -7,6 +7,8 @@ We originally intend to build a self-balancing & self-navigating bike just like 
 
 In this project we established the pipeline of RGBD image processing and Jetson Nano-STM32 communication. Although we couldn't complete self-navigation in time, we demonstrated our work by making our bike follow a person (wearing red, for now).
 
+<img src = https://i.imgur.com/egUaXOn.jpg width = 100%>
+
 ## Method
 ### Development boards & motors
 - STM32L4
@@ -22,6 +24,9 @@ We make use of 3D printers and laser cutter to make various kind of mounts
 - Handlebar control:  servo motor + belt
 - Brake control: servo motor + spool
 - Attach RealSense camera
+
+<img src = https://i.imgur.com/9AMWQx9.jpg width = 80%>
+
 
 ### How To Track A Person
 - Version 1 – Track the person in red
@@ -44,10 +49,10 @@ We make use of 3D printers and laser cutter to make various kind of mounts
 (We don't simply measure the closest distance to avoid false alarms)
 
 ### Power System
-![](https://i.imgur.com/0Y6CQgn.png)
+<img src = https://i.imgur.com/0Y6CQgn.png width = 80%>
 
 ### Control System
-![](https://i.imgur.com/3ZdfIew.png)
+<img src = https://i.imgur.com/3ZdfIew.png width = 80%>
 
 ### Implemented techniques (from Embedded System course)
 - Docker
