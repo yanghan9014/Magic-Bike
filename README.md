@@ -6,6 +6,13 @@ Embedded System Final Report
 We originally intend to build a self-balancing & self-navigating bike just like the XUAN-Bike (https://github.com/peng-zhihui/XUAN), but found self-balancing far too difficult. We then shift our focus solely onto self-navigating.
 
 ## Method
+### Development boards & motors
+- STM32L4
+- Jetson Nano
+- RealSense depth camera D435
+- 45kg-cm PWM controlled servo motor * 2
+- Electric bike motor
+
 ### Hardware installation
 We make use of 3D printers and laser cutter to make various kind of mounts
 - Install electric motor on the back wheel
@@ -14,15 +21,24 @@ We make use of 3D printers and laser cutter to make various kind of mounts
 - Brake control: servo motor + spool
 - Attach RealSense camera
 
-
 ### How To Track A Person
 - Version 1 – Track the person in red
+   1. Take a color image and convert RGB into HSV
+   2. Create a mask of the red areas; calculate the average x coordinate of the mask
+   3. The Horizontal Field of View is ≈69°; we can calculate ∆θ = arctan(∆x / (320 * cot(HFOV / 2)))
+   4. Adjust the handlebar servo motor angle accordingly
+
 - Version 2 - Track the closest person to the bike (not complete yet)
+   - Employ YOLO v5 and get the bounding box coordinates of the closest person
+   - We got YOLO v5 working on COLAB, but failed to install PyTorch with CUDA support on Jetson Nano
+   - Once installation issues got resolved, version 2 would only require a minor fix
 
 ### How To Avoid Collision
 - Get distance image from depth camera
 - Crop out bottom ⅓ of the image (the floor is too close)
-- If the closest distance < 1000mm, hold brake and cut off motor power
+- Calculate the total area in which the distance < 1000m
+- If the area reaches a certain threshold (5% of the full image), hold brake and cut off back wheel motor power
+(We don't simply measure the closest distance to avoid false alarms)
 
 ### Implemented techniques (from Embedded System course)
 - Docker
