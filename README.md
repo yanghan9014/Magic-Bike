@@ -151,13 +151,15 @@ alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
 ## Future Prospects
 This project is an unfortunate simplification of an overly ambitious idea.
+Having figured out the depth camera, we established a foundation that we can easily build upon.
 After this, we plan to...
 1. Detect and avoid (or follow) certain objects (cars, people, animals...) on the road with YOLO v5.
 2. Detect road edges (https://github.com/amusi/awesome-lane-detection), and apply projective transform to get a bird's-eye-view. Auto-correct bike direction if not parellel to the road.
-3. Install GPS module and connect with path-finding API; complete fully automated navigation.
+3. Install GPS module and connect with path-finding API
+4. Figure out an algorithm and complete fully automated navigation.
 
 
 ## Reference
-Xuan bike github: https://github.com/peng-zhihui/XUAN
-Xuan bike YouTube: https://www.youtube.com/watch?v=kCL2d7wZjU8&t=507s&ab_channel=%E7%A8%9A%E6%99%96%E5%90%9B
-Road edge detection: https://github.com/amusi/awesome-lane-detection
+- Xuan bike github: https://github.com/peng-zhihui/XUAN
+- Xuan bike YouTube: https://www.youtube.com/watch?v=kCL2d7wZjU8&t=507s&ab_channel=%E7%A8%9A%E6%99%96%E5%90%9B
+- Road edge detection: https://github.com/amusi/awesome-lane-detection
