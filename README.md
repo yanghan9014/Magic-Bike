@@ -1,4 +1,4 @@
-# Bizzarely-Balancing-Bike (a spooky bike that could stalk you)
+# Magic Bike (a spooky bike that could stalk you)
 Embedded System Final Report  -- By 楊學翰 B08901054 陳韋旭 B08901181
 ---
 
